@@ -66,22 +66,22 @@ P = houghpeaks(H,100,'Threshold',2);
 plot(theta(P(:,2)),rho(P(:,1)),'s','color','red');
 
 % encontra as linhas
-lines = houghlines(img,theta,rho,P,'FillGap',5,'MinLength',7);
+linhas = houghlines(img,theta,rho,P,'FillGap',5,'MinLength',7);
 % funcao para buscar as linhas correspondentes aos picos no espaco de hough
 
 % laco para desenhar as linhas na imagem
 % e tb para gerar a tabela de retas solicitadas pelo prof. Nilceu no item i
 figure(3), imshow(imgc), hold on
-for i=1 : length(lines)
-   xy = [lines(i).point1; lines(i).point2];
-   plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
+for i=1 : length(linhas)
+   eixos = [linhas(i).point1; linhas(i).point2];
+   plot(eixos(:,1),eixos(:,2),'LineWidth',2,'Color','yellow');
 
    % desenha na imagem os inicios e finais das retas
-   plot(xy(1,1),xy(1,2),'x','LineWidth',2,'Color','yellow');
-   plot(xy(2,1),xy(2,2),'x','LineWidth',2,'Color','red');
+   plot(eixos(1,1),eixos(1,2),'x','LineWidth',2,'Color','green');
+   plot(eixos(2,1),eixos(2,2),'x','LineWidth',2,'Color','red');
 
    % gera a tabela de retas solicitadas pelo prof. Nilceu no item i
-   fprintf("Linha [%i]\tPonto A [x: %i, y: %i]\tPonto B [x: %i, y: %i]\n",i, xy(1,1), xy(1,2), xy(2,1), xy(2,2))
+   fprintf("Linha [%i]\tPonto A [x: %i, y: %i]\tPonto B [x: %i, y: %i]\n",i, eixos(1,1), eixos(1,2), eixos(2,1), eixos(2,2))
    
 
 end
